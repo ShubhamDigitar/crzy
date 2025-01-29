@@ -1,5 +1,6 @@
 "useClient";
 
+import Globe from "./text/Globe";
 import Typewriter from "./text/Typewriter";
 
 const AnimSection = () => {
@@ -27,7 +28,9 @@ const AnimSection = () => {
           </p>
         </div>
       </div>
-      <div className="section1 border-2 border-solid-black w-1/3">2</div>
+      <div className="section1 w-1/3">
+      <Globe/>
+      </div>
     </div>
   );
 };

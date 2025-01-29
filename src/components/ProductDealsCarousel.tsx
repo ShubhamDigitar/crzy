@@ -31,7 +31,7 @@ const ProductDealsCarousel: FC<ProductDealsCarouselProps> = ({ title, products }
   };
 
   return (
-    <div className="w-full bg-white px-4 py-6 md:px-8">
+    <div className="w-full bg-white px-4 py-6 md:px-8 ">
       <h2 className="text-2xl font-bold mb-6 text-gray-800">Top deals on {title}</h2>
       
       <div className="relative group">
@@ -53,7 +53,7 @@ const ProductDealsCarousel: FC<ProductDealsCarouselProps> = ({ title, products }
 
         <div 
           ref={scrollContainerRef}
-          className="w-full overflow-x-auto no-scrollbar scroll-smooth"
+          className="w-full overflow-x-auto no-scrollbar scroll-smooth pt-6"
         >
           <div className="flex gap-6 pb-4 min-w-min px-2">
             {products.map((product, index) => (
@@ -70,7 +70,7 @@ const ProductDealsCarousel: FC<ProductDealsCarouselProps> = ({ title, products }
                     alt={`Deal on ${title}`}
                     fill
                     sizes="(max-width: 768px) 288px, (max-width: 1024px) 320px, 384px"
-                    className="object-cover"
+                    className="object-cover border-2 border-black rounded-lg"
                     priority={index < 3}
                   />
                 </div>

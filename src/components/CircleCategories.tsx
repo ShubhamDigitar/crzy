@@ -76,7 +76,7 @@ const CircleCategories: FC = () => {
             {companies.map((company, index) => (
               <div
                 key={index}
-                className="flex flex-col items-center flex-shrink-0 group/item"
+                className="flex flex-col items-center flex-shrink-0 group/item pt-2 cursor-pointer"
               >
                 <div className="relative w-16 h-16 md:w-20 md:h-20 lg:w-24 lg:h-24 rounded-full bg-white overflow-hidden mb-2 transition-transform duration-300 ease-in-out group-hover/item:scale-105">
                   <Image
@@ -84,7 +84,7 @@ const CircleCategories: FC = () => {
                     alt={`${company.name} logo`}
                     fill
                     sizes="(max-width: 768px) 64px, (max-width: 1024px) 80px, 96px"
-                    className="object-cover rounded-full"
+                    className="object-cover rounded-full border-2 border-black"
                     priority={index < 4}
                   />
                 </div>
