@@ -10,10 +10,18 @@
   },
   "dependencies": {
     "@material-tailwind/react": "^2.1.10",
+    "@react-spring/web": "^9.7.5",
+    "@types/hammerjs": "^2.0.46",
     "framer": "^2.4.1",
+    "framer-motion": "^12.0.6",
+    "hammerjs": "^2.0.8",
+    "lucide-react": "^0.474.0",
     "next": "14.2.2",
     "react": "^18",
-    "react-dom": "^18"
+    "react-dom": "^18",
+    "react-swipeable": "^7.0.2",
+    "react-tinder-card": "^1.6.4",
+    "tailwindcss-animate": "^1.0.7"
   },
   "devDependencies": {
     "@types/node": "^20",

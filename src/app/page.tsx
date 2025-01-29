@@ -1,15 +1,18 @@
-import ProductList from "@/components/ProductList";
-import Slider from "@/components/Slider";
+import AnimSection from "@/components/AnimSection";
+import CircleCategories from "@/components/CircleCategories";
+import Footer from "@/components/Footer";
+import ProductListPage from "@/components/ProductListPage";
 import SliderMain from "@/components/SliderMain";
+import Typewriter from "@/components/text/Typewriter";
 
 const HomePage = () => {
   return (
     <>
       <SliderMain />
-      <div className="mt-24">
-        <ProductList />
-      </div>
-    </>
+      <CircleCategories />
+      <ProductListPage />
+      <AnimSection />
+      </>
   );
 };
 
