@@ -1,4 +1,3 @@
-// CardIndex.tsx
 "use client";
 import { useState, useEffect } from "react";
 import { AnimatePresence } from "framer-motion";
@@ -27,7 +26,6 @@ const CardIndex: NextPage = () => {
     setHistory((current) => [...current, { ...oldCard, swipe }]);
     setCards((current) => {
       const newCards = current.filter((card) => card.id !== oldCard.id);
-      // If this was the last card, reset the deck after a short delay
       if (newCards.length === 0) {
         setTimeout(resetCards, 500); // Add delay for smooth transition
       }
@@ -35,6 +33,19 @@ const CardIndex: NextPage = () => {
     });
     setResult((current) => ({ ...current, [swipe]: current[swipe] + 1 }));
   };
+
+  // Auto-swipe logic
+  useEffect(() => {
+    const autoSwipeInterval = setInterval(() => {
+      if (cards.length > 0) {
+        const swipeDirection: SwipeType = Math.random() > 0.5 ? "like" : "nope"; // Random swipe: left ("nope") or right ("like")
+        const cardToSwipe = cards[0]; // Always swipe the top card
+        removeCard(cardToSwipe, swipeDirection);
+      }
+    }, 3000); // Auto-swipe every 3 seconds
+
+    return () => clearInterval(autoSwipeInterval); // Clean up on unmount
+  }, [cards]);
 
   const undoSwipe = () => {
     const newCard = history.pop();
@@ -63,7 +74,6 @@ const CardIndex: NextPage = () => {
           />
         ))}
       </AnimatePresence>
-     
     </div>
   );
 };

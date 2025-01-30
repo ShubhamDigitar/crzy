@@ -1,11 +1,23 @@
-
 import { PanInfo, motion } from "framer-motion";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { CardProps } from "../types/index";
+import Image from "next/image"; // Import Image from Next.js
+import img from "../../public/product.png"; // Import the background image
 
 const Card: React.FC<CardProps> = ({ card, removeCard, active }) => {
   const [leaveX, setLeaveX] = useState(0);
   const [leaveY, setLeaveY] = useState(0);
+
+  useEffect(() => {
+    if (active) {
+      const timer = setTimeout(() => {
+        setLeaveX(1000); // Auto-swipe right (like)
+        removeCard(card, "like");
+      }, 3000); // 3-second delay
+
+      return () => clearTimeout(timer); // Cleanup timer on unmount
+    }
+  }, [active, card, removeCard]);
 
   const onDragEnd = (_e: any, info: PanInfo) => {
     if (info.offset.y < -100) {
@@ -23,19 +35,14 @@ const Card: React.FC<CardProps> = ({ card, removeCard, active }) => {
     }
   };
 
-  const classNames = `absolute h-[80%] w-[90%] bg-white shadow-xl rounded-2xl flex flex-col justify-center items-center cursor-grab`;
-
   return (
     <>
       {active ? (
         <motion.div
-          drag={true}
+          drag
           dragConstraints={{ left: 0, right: 0, top: 0, bottom: 0 }}
           onDragEnd={onDragEnd}
-          initial={{
-            scale: 1,
-            opacity: 1,
-          }}
+          initial={{ scale: 1, opacity: 1 }}
           animate={{
             scale: 1.05,
             rotate: `${card.name.length % 2 === 0 ? 6 : -6}deg`,
@@ -47,45 +54,40 @@ const Card: React.FC<CardProps> = ({ card, removeCard, active }) => {
             scale: 0.5,
             transition: { duration: 0.2 },
           }}
-          className={classNames}
+          className="absolute h-[82%] w-[92%] rounded-2xl p-[3px] bg-gradient-to-r from-red-500 via-purple-500 to-blue-500 bg-[length:400%_400%] animate-border-move"
           data-testid="active-card"
         >
-          <Emoji label={card.name} emoji={card.emoji} />
-          <Title title={card.name} color={card.color} />
+          <div
+            className="h-full w-full bg-white shadow-xl rounded-2xl flex flex-col justify-center items-center cursor-grab"
+            style={{
+              backgroundImage: `url(${img.src})`, // Set the background image for the white layer
+              backgroundSize: "cover", // Ensure the image covers the whole white area
+              backgroundPosition: "center", // Center the background image
+            }}
+          >
+            {/* Only Image */}
+           
+          </div>
         </motion.div>
       ) : (
         <div
-          className={`${classNames} ${
+          className={`absolute h-[82%] w-[92%] p-[3px] rounded-2xl bg-gradient-to-r from-red-500 via-purple-500 to-blue-500 bg-[length:400%_400%] animate-border-move ${
             card.name.length % 2 === 0 ? "rotate-6" : "-rotate-6"
           }`}
         >
-          <Emoji label={card.name} emoji={card.emoji} />
-          <Title title={card.name} color={card.color} />
+          <div
+            className="h-full w-full bg-white shadow-xl rounded-2xl flex flex-col justify-center items-center"
+            style={{
+              backgroundImage: `url(${img.src})`, // Set the background image for the white layer
+              backgroundSize: "cover", // Ensure the image covers the whole white area
+              backgroundPosition: "center", // Center the background image
+            }}
+          >
+            {/* Only Image */}
+          </div>
         </div>
       )}
     </>
-  );
-};
-
-const Emoji: React.FC<{ emoji: string; label: string }> = ({
-  emoji,
-  label,
-}) => {
-  return (
-    <span role="img" aria-label={label} className="text-[80px] md:text-[100px]">
-      {emoji}
-    </span>
-  );
-};
-
-const Title: React.FC<{ title: string; color: string }> = ({
-  title,
-  color,
-}) => {
-  return (
-    <span style={{ color }} className="text-3xl md:text-4xl font-bold">
-      {/* {title} */}
-    </span>
   );
 };
 

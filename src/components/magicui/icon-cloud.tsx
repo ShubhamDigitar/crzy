@@ -1,73 +1,85 @@
-'use client';
+"use client";
 
-import React from 'react';
-import amazonLogo from "../../../public/logos/amazon-logo.png";
+import { useTheme } from "next-themes";
+import { useEffect, useMemo, useState } from "react";
+import {
+  Cloud,
+  fetchSimpleIcons,
+  ICloud,
+  renderSimpleIcon,
+  SimpleIcon,
+} from "react-icon-cloud";
+import Image from "next/image";
 
-export const IconCloud = () => {
-  const [hoveredIcon, setHoveredIcon] = React.useState<number | null>(null);
+// Cloud configuration
+const cloudProps: Omit<ICloud, "children"> = {
+  containerProps: {
+    style: {
+      display: "flex",
+      justifyContent: "center",
+      alignItems: "center",
+      width: "100%",
+      paddingTop: 40,
+    },
+  },
+  options: {
+    reverse: true,
+    depth: 2,
+    wheelZoom: false,
+    imageScale: 2,
+    activeCursor: "default",
+    tooltip: "native",
+    initial: [0.1, -0.1],
+    clickToFront: 500,
+    tooltipDelay: 0,
+    outlineColour: "#ffffff",
+    maxSpeed: 0.05,
+    minSpeed: 0.01,
+    radiusX: 0.7,
+    radiusY: 0.7,
+    radiusZ: 0.7,
+    shuffleTags: true,
+  },
+};
 
-  // Each logo is repeated 6 times for this example
-  // Replace with different logos when you have them
-  const logos = [
-    {
-      image: amazonLogo,
-      alt: "Amazon"
-    },
-    {
-      image: amazonLogo,
-      alt: "Amazon"
-    },
-    {
-      image: amazonLogo,
-      alt: "Amazon"
-    },
-    {
-      image: amazonLogo,
-      alt: "Amazon"
-    },
-    {
-      image: amazonLogo,
-      alt: "Amazon"
-    },
-    {
-      image: amazonLogo,
-      alt: "Amazon"
-    }
-  ];
+export type DynamicCloudProps = {
+  iconSlugs: string[];
+};
 
-  // Log the logos array to check if the images are imported correctly
-  console.log('Logos array:', logos);
+type IconData = Awaited<ReturnType<typeof fetchSimpleIcons>>;
+
+export default function IconCloud({ iconSlugs }: DynamicCloudProps) {
+  const [data, setData] = useState<IconData | null>(null);
+  const { theme } = useTheme();
+
+  useEffect(() => {
+    fetchSimpleIcons({ slugs: iconSlugs }).then(setData);
+  }, [iconSlugs]);
+
+  const renderedIcons = useMemo(() => {
+    if (!data) return null;
+    return Object.values(data.simpleIcons).map((icon) =>
+      renderSimpleIcon({
+        icon,
+        bgHex: theme === "light" ? "#f3f2ef" : "#080510",
+        fallbackHex: theme === "light" ? "#6e6e73" : "#ffffff",
+        minContrastRatio: theme === "dark" ? 2 : 1.2,
+        size: 42,
+        aProps: {
+          href: undefined,
+          target: undefined,
+          rel: undefined,
+          onClick: (e: React.MouseEvent) => e.preventDefault(),
+        },
+      })
+    );
+  }, [data, theme]);
 
   return (
-    <div className="relative h-64 w-64 bg-white rounded-xl">
-      {logos.map((logo, index) => {
-        const angle = (360 / logos.length) * index;
-        const radius = 80;
-        const x = Math.cos((angle * Math.PI) / 180) * radius;
-        const y = Math.sin((angle * Math.PI) / 180) * radius;
-
-        console.log(`Logo ${index}:`, logo);
-
-        return (
-          <div
-            key={index}
-            className="absolute left-1/2 top-1/2 transform -translate-x-1/2 -translate-y-1/2 transition-all duration-300 ease-in-out"
-            style={{
-              transform: `translate(calc(-50% + ${x}px), calc(-50% + ${y}px)) scale(${hoveredIcon === index ? 1.5 : 1})`,
-            }}
-            onMouseEnter={() => setHoveredIcon(index)}
-            onMouseLeave={() => setHoveredIcon(null)}
-          >
-            <img 
-              src={logo.image.src}
-              alt={logo.alt}
-              width={58}
-              height={58}
-              className={`transition-all duration-300 ${hoveredIcon === index ? 'brightness-110 scale-160' : ''}`}
-            />
-          </div>
-        );
-      })}
-    </div>
+    <Cloud {...cloudProps}>
+      <>
+        {renderedIcons}
+      </>
+    </Cloud>
   );
-};
+}

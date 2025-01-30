@@ -2,8 +2,8 @@
 import Image from "next/image";
 import { FC, useRef } from "react";
 import { ChevronLeft, ChevronRight } from "lucide-react";
-
 import image from "../../public/comp_logo.jpg";
+
 interface Company {
   name: string;
   logo: string;
@@ -19,7 +19,6 @@ const CircleCategories: FC = () => {
     { name: "Company 5", logo: "/api/placeholder/80/80" },
     { name: "Company 6", logo: "/api/placeholder/80/80" },
     { name: "Company 7", logo: "/api/placeholder/80/80" },
-    { name: "Company 8", logo: "/api/placeholder/80/80" },
     { name: "Company 8", logo: "/api/placeholder/80/80" },
     { name: "Company 8", logo: "/api/placeholder/80/80" },
     { name: "Company 8", logo: "/api/placeholder/80/80" },
@@ -48,7 +47,7 @@ const CircleCategories: FC = () => {
   return (
     <div className="w-full px-4 py-4 md:px-8 relative">
       <h2 className="text-2xl font-bold mb-6 text-gray-800">
-        Top Stores Across the Globe
+        Top Categories
       </h2>
 
       <div className="relative group">
@@ -78,15 +77,18 @@ const CircleCategories: FC = () => {
                 key={index}
                 className="flex flex-col items-center flex-shrink-0 group/item pt-2 cursor-pointer"
               >
-                <div className="relative w-16 h-16 md:w-20 md:h-20 lg:w-24 lg:h-24 rounded-full bg-white overflow-hidden mb-2 transition-transform duration-300 ease-in-out group-hover/item:scale-105">
-                  <Image
-                    src={image}
-                    alt={`${company.name} logo`}
-                    fill
-                    sizes="(max-width: 768px) 64px, (max-width: 1024px) 80px, 96px"
-                    className="object-cover rounded-full border-2 border-black"
-                    priority={index < 4}
-                  />
+                {/* Gradient border container */}
+                <div className="relative w-16 h-16 md:w-20 md:h-20 lg:w-24 lg:h-24 rounded-full bg-gradient-to-r from-red-500 via-purple-500 to-blue-500 p-[3px] mb-2 transition-transform duration-300 ease-in-out group-hover/item:scale-105">
+                  <div className="w-full h-full rounded-full overflow-hidden">
+                    <Image
+                      src={image}
+                      alt={`${company.name} logo`}
+                      fill
+                      sizes="(max-width: 768px) 64px, (max-width: 1024px) 80px, 96px"
+                      className="object-cover rounded-full scale-95" // Scale down the image
+                      priority={index < 4}
+                    />
+                  </div>
                 </div>
                 <p className="text-sm md:text-base text-center text-gray-800 group-hover/item:text-gray-600 cursor-pointer">
                   {company.name}
