@@ -38,17 +38,17 @@ const PopularStore = () => {
     {
       id: 7,
       name: "Costco",
-      imageUrl: "/logos/amazon-logo.png"
+      imageUrl: "/logos/costco.svg"
     },
     {
       id: 8,
-      name: "Home Depot",
-      imageUrl: "/logos/amazon-logo.png"
+      name: "Nike",
+      imageUrl: "/logos/nike.svg"
     },
     {
       id: 9,
-      name: "Nike",
-      imageUrl: "/logos/amazon-logo.png"
+      name: "Toyrist",
+      imageUrl: "/logos/toyristLogo.png"
     }
   ];
 

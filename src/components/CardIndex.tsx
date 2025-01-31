@@ -63,7 +63,7 @@ const CardIndex: NextPage = () => {
   };
 
   return (
-    <div className="relative flex flex-col justify-center items-center w-full h-full gradient">
+    <div className="relative flex flex-col justify-center items-center w-full h-[25rem] gradient">
       <AnimatePresence>
         {cards.map((card, index) => (
           <Card

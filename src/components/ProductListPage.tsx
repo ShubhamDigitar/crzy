@@ -20,6 +20,7 @@ const ProductListPage = () => {
       <ProductDealsCarousel title="Flipkart" products={products} />
       <ProductDealsCarousel title="Reliance Digital" products={products} />
       <ProductDealsCarousel title="Chroma" products={products} />
+      <ProductDealsCarousel title="Toyrist" products={products} />
     </div>
   );
 };

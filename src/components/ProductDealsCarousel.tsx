@@ -71,9 +71,9 @@ const ProductDealsCarousel: FC<ProductDealsCarouselProps> = ({
                 target="_blank"
                 rel="noopener noreferrer"
               >
-                <div className="relative w-72 h-48 md:w-80 md:h-56 lg:w-96 lg:h-64 rounded-lg overflow-hidden shadow-md transition-all duration-300 hover:shadow-xl hover:scale-105 p-[3px] bg-gradient-to-r from-red-500 via-purple-500 to-blue-500 bg-[length:400%_400%] animate-border-move">
+                <div className="relative w-72 h-48 md:w-80 md:h-56 lg:w-96 lg:h-64 rounded-lg overflow-hidden shadow-md transition-all duration-300 hover:shadow-xl hover:scale-105 p-[0px] bg-gradient-to-r from-red-500 via-purple-500 to-blue-500 bg-[length:400%_400%] animate-border-move">
                   <div className="w-full h-full rounded-lg overflow-hidden bg-white relative">
-                    <div className="w-full h-full rounded-lg overflow-hidden border-4 border-transparent hover:border-white transition-all duration-300">
+                    <div className="w-full h-full rounded-lg overflow-hidden border-2 border-transparent hover:border-white transition-all duration-300">
                       <Image
                         src={productImg}
                         alt={`Deal on ${title}`}

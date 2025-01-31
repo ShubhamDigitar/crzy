@@ -12,7 +12,7 @@ const SliderMain = () => {
   ];
   return (
     <div className="h-auto flex flex-col md:flex-row gap-20 p-5 mt-2 overflow-hidden">
-      <div className="w-full md:w-4/5  h-[50vh]">
+      <div className="w-full md:w-4/5  h-[25rem]">
         <Carousel images={images} autoPlayInterval={5000} />
       </div>
       <div className="hidden md:block w-full md:w-1/5  rounded-xl h-[50vh]">

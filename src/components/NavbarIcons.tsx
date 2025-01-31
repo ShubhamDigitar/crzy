@@ -4,13 +4,19 @@ import Image from "next/image";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { useState } from "react";
+import { useEffect } from "react";
+import NotifyCard from "./NotifyCard";
 
 const NavbarIcons = () => {
   const [isProfileOpen, setisProfileOpen] = useState(false);
+  const [showNotifyCard, setShowNotifyCard] = useState(false);
 
   const isLoggedin = true; //temp
   const router = useRouter();
 
+  const handleNotificationClick = () => {
+    setShowNotifyCard(true);
+  };
   const handleprofileClick = () => {
     if (!isLoggedin) {
       router.push("/login");
@@ -26,6 +32,8 @@ const NavbarIcons = () => {
         width={22}
         height={22}
         className="cursor-pointer"
+        onClick={handleNotificationClick}
+        id="notification-icon"
       ></Image>
       <Image
         src="/profile.png"
@@ -48,7 +56,9 @@ const NavbarIcons = () => {
           </div>
         </div>
       )}
-      {/* <Image src="/cart.png" alt="" width={22} height={22} className="cursor-pointer"></Image> */}
+      {showNotifyCard && (
+        <NotifyCard onClose={() => setShowNotifyCard(false)} />
+      )}
     </div>
   );
 };
