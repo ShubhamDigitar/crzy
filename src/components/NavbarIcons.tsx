@@ -43,7 +43,7 @@ const NavbarIcons = () => {
         className="cursor-pointer"
         onClick={handleprofileClick}
       ></Image>
-      {isProfileOpen && (
+      {/* {isProfileOpen && (
         <div className="absolute p-4 rounded-md top-12 left-0 text-sm shadow-[rgba(0,0,0,0.2)_0px_3px_10px]">
           <Link href="/" className="hover:font-semibold">
             Profile
@@ -55,7 +55,7 @@ const NavbarIcons = () => {
             Logout
           </div>
         </div>
-      )}
+      )} */}
       {showNotifyCard && (
         <NotifyCard onClose={() => setShowNotifyCard(false)} />
       )}

@@ -38,7 +38,10 @@ const ProductDealsCarousel: FC<ProductDealsCarouselProps> = ({
   return (
     <div className="w-full bg-white px-4 py-6 md:px-8">
       <h2 className="text-2xl font-bold mb-6 text-gray-800">
-        Top deals on {title}
+        Crazy deals on&nbsp;
+        <span className="bg-gradient-to-r from-red-500 via-purple-500 to-blue-500 inline-block text-transparent bg-clip-text">
+        {title}
+        </span>
       </h2>
 
       <div className="relative group">

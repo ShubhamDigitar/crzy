@@ -13,20 +13,20 @@ const CircleCategories: FC = () => {
   const scrollContainerRef = useRef<HTMLDivElement>(null);
 
   const companies: Company[] = [
-    { name: "Company 2", logo: "/api/placeholder/80/80" },
-    { name: "Company 3", logo: "/api/placeholder/80/80" },
-    { name: "Company 4", logo: "/api/placeholder/80/80" },
-    { name: "Company 5", logo: "/api/placeholder/80/80" },
-    { name: "Company 6", logo: "/api/placeholder/80/80" },
-    { name: "Company 7", logo: "/api/placeholder/80/80" },
-    { name: "Company 8", logo: "/api/placeholder/80/80" },
-    { name: "Company 8", logo: "/api/placeholder/80/80" },
-    { name: "Company 8", logo: "/api/placeholder/80/80" },
-    { name: "Company 8", logo: "/api/placeholder/80/80" },
-    { name: "Company 8", logo: "/api/placeholder/80/80" },
-    { name: "Company 8", logo: "/api/placeholder/80/80" },
-    { name: "Company 8", logo: "/api/placeholder/80/80" },
-    { name: "Company 8", logo: "/api/placeholder/80/80" },
+    { name: "Company", logo: "/api/placeholder/80/80" },
+    { name: "Company", logo: "/api/placeholder/80/80" },
+    { name: "Company", logo: "/api/placeholder/80/80" },
+    { name: "Company", logo: "/api/placeholder/80/80" },
+    { name: "Company", logo: "/api/placeholder/80/80" },
+    { name: "Company", logo: "/api/placeholder/80/80" },
+    { name: "Company", logo: "/api/placeholder/80/80" },
+    { name: "Company", logo: "/api/placeholder/80/80" },
+    { name: "Company", logo: "/api/placeholder/80/80" },
+    { name: "Company", logo: "/api/placeholder/80/80" },
+    { name: "Company", logo: "/api/placeholder/80/80" },
+    { name: "Company", logo: "/api/placeholder/80/80" },
+    { name: "Company", logo: "/api/placeholder/80/80" },
+    { name: "Company", logo: "/api/placeholder/80/80" },
   ];
 
   const scroll = (direction: "left" | "right") => {
@@ -46,8 +46,8 @@ const CircleCategories: FC = () => {
 
   return (
     <div className="w-full px-4 py-4 md:px-8 relative">
-      <h2 className="text-2xl font-bold mb-6 text-gray-800">
-        Top Categories
+      <h2 className="text-2xl font-bold mb-6 text-gray-800 relative w-fit after:content-[''] after:absolute after:left-0 after:-bottom-1 after:w-full after:h-[2px] after:bg-gradient-to-r after:from-red-500 after:via-purple-500 after:to-blue-500">
+        Top Brands
       </h2>
 
       <div className="relative group">

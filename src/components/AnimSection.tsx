@@ -20,7 +20,7 @@ const AnimSection = () => {
                 "shop like never before!",
               ]}
               speed={70}
-              className="text-teal-500"
+              className="text-pink-500"
               waitTime={1500}
               deleteSpeed={40}
               cursorChar="_"

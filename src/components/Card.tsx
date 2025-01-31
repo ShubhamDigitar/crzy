@@ -3,6 +3,9 @@ import { useEffect, useState } from "react";
 import { CardProps } from "../types/index";
 import Image from "next/image"; // Import Image from Next.js
 import img from "../../public/product.png"; // Import the background image
+import img1 from "../../public/prodCard2.png"; // Import the background image
+import img2 from "../../public/prodCard2.png"; // Import the background image
+import img3 from "../../public/product3.png"; // Import the background image
 
 const Card: React.FC<CardProps> = ({ card, removeCard, active }) => {
   const [leaveX, setLeaveX] = useState(0);
@@ -13,7 +16,7 @@ const Card: React.FC<CardProps> = ({ card, removeCard, active }) => {
       const timer = setTimeout(() => {
         setLeaveX(1000); // Auto-swipe right (like)
         removeCard(card, "like");
-      }, 3000); // 3-second delay
+      }, 3000); // 3-second delayp
 
       return () => clearTimeout(timer); // Cleanup timer on unmount
     }
@@ -60,7 +63,7 @@ const Card: React.FC<CardProps> = ({ card, removeCard, active }) => {
           <div
             className="h-full w-full bg-white shadow-xl rounded-2xl flex flex-col justify-center items-center cursor-grab"
             style={{
-              backgroundImage: `url(${img.src})`, // Set the background image for the white layer
+              backgroundImage: `url(${img1.src})`, // Set the background image for the white layer
               backgroundSize: "cover", // Ensure the image covers the whole white area
               backgroundPosition: "center", // Center the background image
             }}
@@ -78,7 +81,7 @@ const Card: React.FC<CardProps> = ({ card, removeCard, active }) => {
           <div
             className="h-full w-full bg-white shadow-xl rounded-2xl flex flex-col justify-center items-center"
             style={{
-              backgroundImage: `url(${img.src})`, // Set the background image for the white layer
+              backgroundImage: `url(${img2.src})`, // Set the background image for the white layer
               backgroundSize: "cover", // Ensure the image covers the whole white area
               backgroundPosition: "center", // Center the background image
             }}

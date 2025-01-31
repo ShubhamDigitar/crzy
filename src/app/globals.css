@@ -2,31 +2,35 @@
 @tailwind components;
 @tailwind utilities;
 
-
-.no-scrollbar::-webkit-scrollbar {
-    display: none; /* Hide scrollbar for Chrome, Safari, and Opera */
-  }
-  
-  .no-scrollbar {
-    -ms-overflow-style: none;  /* Hide scrollbar for Internet Explorer and Edge */
-    scrollbar-width: none;  /* Hide scrollbar for Firefox */
-  }
-  
-  @layer base {
-  :root {
-        --radius: 0.5rem
-    ;
-        --color-1: 0 100% 63%;
-        --color-2: 270 100% 63%;
-        --color-3: 210 100% 63%;
-        --color-4: 195 100% 63%;
-        --color-5: 90 100% 63%}
-  .dark {
-        --color-1: 0 100% 63%;
-        --color-2: 270 100% 63%;
-        --color-3: 210 100% 63%;
-        --color-4: 195 100% 63%;
-        --color-5: 90 100% 63%
-    }
+:root {
+  font-family: var(--font-montserrat), sans-serif;
 }
-  
+.navigation-menu-content {
+  z-index: 50 !important;
+}
+.no-scrollbar::-webkit-scrollbar {
+  display: none; /* Hide scrollbar for Chrome, Safari, and Opera */
+}
+
+.no-scrollbar {
+  -ms-overflow-style: none; /* Hide scrollbar for Internet Explorer and Edge */
+  scrollbar-width: none; /* Hide scrollbar for Firefox */
+}
+
+@layer base {
+  :root {
+    --radius: 0.5rem;
+    --color-1: 0 100% 63%;
+    --color-2: 270 100% 63%;
+    --color-3: 210 100% 63%;
+    --color-4: 195 100% 63%;
+    --color-5: 90 100% 63%;
+  }
+  .dark {
+    --color-1: 0 100% 63%;
+    --color-2: 270 100% 63%;
+    --color-3: 210 100% 63%;
+    --color-4: 195 100% 63%;
+    --color-5: 90 100% 63%;
+  }
+}

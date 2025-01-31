@@ -1,5 +1,6 @@
 // NotifyCard.tsx
 import { useState } from "react";
+import { Card } from "../components/ui/card";
 
 const NotifyCard = ({ onClose }: { onClose: () => void }) => {
   const handleAllow = async () => {
@@ -21,12 +22,16 @@ const NotifyCard = ({ onClose }: { onClose: () => void }) => {
         Stay updated with latest alerts and updates
       </p>
       <div className="flex gap-3">
-        <button
-          onClick={handleAllow}
-          className="px-4 py-2 bg-blue-500 text-white rounded-md hover:bg-blue-600"
-        >
-          Allow
-        </button>
+        <div className="group">
+          <button
+            onClick={handleAllow}
+            className="relative px-4 py-2 border-2 text-black rounded-md overflow-hidden transition-all duration-300 hover:text-white hover:border-transparent hover:scale-105"
+          >
+            <span className="relative z-10">Allow</span>
+            <span className="absolute  inset-0 bg-gradient-to-r from-red-500 via-purple-500 to-blue-500 opacity-0 group-hover:opacity-100 transition-opacity duration-300 z-0"></span>
+          </button>
+        </div>
+
         <button
           onClick={onClose}
           className="px-4 py-2 bg-gray-100 rounded-md hover:bg-gray-200"

@@ -63,18 +63,19 @@ const CardIndex: NextPage = () => {
   };
 
   return (
-    <div className="relative flex flex-col justify-center items-center w-full h-[25rem] gradient">
-      <AnimatePresence>
-        {cards.map((card, index) => (
-          <Card
-            key={`${card.id}-${Math.random()}`}
-            active={index === activeIndex}
-            removeCard={removeCard}
-            card={card}
-          />
-        ))}
-      </AnimatePresence>
-    </div>
+    <div className="relative flex flex-col justify-center items-center w-full h-[12rem] md:h-[18rem] lg:h-[18rem] xl:h-[22rem] gradient">
+    <AnimatePresence>
+      {cards.map((card, index) => (
+        <Card
+          key={`${card.id}-${index}`} // Using index with id for more stable keys
+          active={index === activeIndex}
+          removeCard={removeCard}
+          card={card}
+        />
+      ))}
+    </AnimatePresence>
+  </div>
+  
   );
 };
 
