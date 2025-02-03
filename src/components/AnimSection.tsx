@@ -28,9 +28,7 @@ const AnimSection = () => {
           </p>
         </div>
       </div>
-      <div className="section1 w-1/3">
-      <Globe/>
-      </div>
+      
     </div>
   );
 };
