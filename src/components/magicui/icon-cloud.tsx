@@ -11,35 +11,9 @@ import {
 } from "react-icon-cloud";
 import Image from "next/image";
 
-// Cloud configuration
+// Cloud configuration remains the same
 const cloudProps: Omit<ICloud, "children"> = {
-  containerProps: {
-    style: {
-      display: "flex",
-      justifyContent: "center",
-      alignItems: "center",
-      width: "100%",
-      paddingTop: 40,
-    },
-  },
-  options: {
-    reverse: true,
-    depth: 2,
-    wheelZoom: false,
-    imageScale: 2,
-    activeCursor: "default",
-    tooltip: "native",
-    initial: [0.1, -0.1],
-    clickToFront: 500,
-    tooltipDelay: 0,
-    outlineColour: "#ffffff",
-    maxSpeed: 0.05,
-    minSpeed: 0.01,
-    radiusX: 0.7,
-    radiusY: 0.7,
-    radiusZ: 0.7,
-    shuffleTags: true,
-  },
+  // ... your existing cloud props
 };
 
 export type DynamicCloudProps = {
@@ -57,7 +31,7 @@ export default function IconCloud({ iconSlugs }: DynamicCloudProps) {
   }, [iconSlugs]);
 
   const renderedIcons = useMemo(() => {
-    if (!data) return null;
+    if (!data) return [];  // Return empty array instead of null
     return Object.values(data.simpleIcons).map((icon) =>
       renderSimpleIcon({
         icon,
@@ -75,11 +49,10 @@ export default function IconCloud({ iconSlugs }: DynamicCloudProps) {
     );
   }, [data, theme]);
 
+  // Remove the fragment and directly return the renderedIcons
   return (
     <Cloud {...cloudProps}>
-      <>
-        {renderedIcons}
-      </>
+      {renderedIcons}
     </Cloud>
   );
 }

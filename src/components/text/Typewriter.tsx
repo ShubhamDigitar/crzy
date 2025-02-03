@@ -18,19 +18,14 @@ const Typewriter: React.FC<TypewriterProps> = ({
   deleteSpeed = 40,
   cursorChar = '_'
 }) => {
-  // Early return if text array is empty
-  if (!text || text.length === 0) {
-    return <span className={className}>{cursorChar}</span>;
-  }
-
   const [displayText, setDisplayText] = useState('');
   const [currentIndex, setCurrentIndex] = useState(0);
   const [isTyping, setIsTyping] = useState(true);
   const [cursorVisible, setCursorVisible] = useState(true);
 
   // Ensure currentIndex stays within bounds
-  const safeIndex = currentIndex % text.length;
-  const currentText = text[safeIndex] || '';
+  const safeIndex = currentIndex % (text?.length || 1);
+  const currentText = text?.[safeIndex] || '';
 
   useEffect(() => {
     // Cursor blinking effect
@@ -64,13 +59,18 @@ const Typewriter: React.FC<TypewriterProps> = ({
         }, deleteSpeed);
       } else {
         // Move to next text
-        setCurrentIndex((prev) => (prev + 1) % text.length);
+        setCurrentIndex((prev) => (prev + 1) % (text?.length || 1));
         setIsTyping(true);
       }
     }
 
     return () => clearTimeout(timeout);
   }, [displayText, currentText, isTyping, text, speed, waitTime, deleteSpeed]);
+
+  // Return early after hooks are declared
+  if (!text || text.length === 0) {
+    return <span className={className}>{cursorChar}</span>;
+  }
 
   return (
     <span className={className}>

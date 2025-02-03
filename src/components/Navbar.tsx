@@ -13,6 +13,7 @@ import {
   NavigationMenuList,
   NavigationMenuTrigger,
 } from "../components/ui/navigation-menu";
+import { ReactNode } from "react";
 
 const categories = [
   "Electronics",
@@ -28,7 +29,11 @@ const categories = [
   "Pet Supplies",
 ];
 
-const NavLink = ({ href, children }) => (
+interface NavLinkProps {
+  href: string;
+  children: ReactNode;
+}
+const NavLink = ({ href, children }: NavLinkProps) => (
   <Link
     href={href}
     className="relative py-2 transition-all duration-300 transform hover:scale-105 block group"

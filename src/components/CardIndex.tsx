@@ -1,5 +1,5 @@
 "use client";
-import { useState, useEffect } from "react";
+import { useState, useEffect, useCallback } from "react";
 import { AnimatePresence } from "framer-motion";
 import type { NextPage } from "next";
 import { CardType, HistoryType, ResultType, SwipeType } from "../types/index";
@@ -22,7 +22,7 @@ const CardIndex: NextPage = () => {
     setCards(CARDS);
   };
 
-  const removeCard = (oldCard: CardType, swipe: SwipeType) => {
+  const removeCard = useCallback((oldCard: CardType, swipe: SwipeType) => {
     setHistory((current) => [...current, { ...oldCard, swipe }]);
     setCards((current) => {
       const newCards = current.filter((card) => card.id !== oldCard.id);
@@ -32,7 +32,7 @@ const CardIndex: NextPage = () => {
       return newCards;
     });
     setResult((current) => ({ ...current, [swipe]: current[swipe] + 1 }));
-  };
+  }, [resetCards]);
 
   // Auto-swipe logic
   useEffect(() => {
@@ -43,10 +43,10 @@ const CardIndex: NextPage = () => {
         removeCard(cardToSwipe, swipeDirection);
       }
     }, 3000); // Auto-swipe every 3 seconds
-
+  
     return () => clearInterval(autoSwipeInterval); // Clean up on unmount
-  }, [cards]);
-
+  }, [cards, removeCard]); // Add removeCard to the dependency array
+  
   const undoSwipe = () => {
     const newCard = history.pop();
     if (newCard) {
