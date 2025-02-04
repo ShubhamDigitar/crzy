@@ -57,15 +57,15 @@ const Navbar = () => {
       {/* Big Screens */}
       <div className="hidden md:flex items-center h-full justify-between gap-8">
         {/* Left */}
-        <div className="w-3/5  flex items-center justify-between">
+        <div className="w-3/6  flex items-center justify-between">
           <Link href="#" className="flex items-center gap-0 pr-2">
             <Image src={logo} alt="" height={50}></Image>
           </Link>
           <SearchBar />
         </div>
         {/* Right */}
-        <div className="w-2/5 flex items-center justify-end gap-8 ">
-          <div className="hidden xl:flex gap-2 text-sm">
+        <div className="w-3/6 flex items-center gap-8 justify-between">
+          <div className="hidden xl:flex gap-2 text-sm ">
             <NavigationMenu>
               <NavigationMenuList>
                 <NavigationMenuItem>
@@ -95,8 +95,17 @@ const Navbar = () => {
             </NavigationMenu>
             <NavLink href="/">Top Stores</NavLink>
             <NavLink href="/">Coupons</NavLink>
+            {/* <div className="mt-1 flex justify-center items-center">
+              <div className="rounded px-3 py-1.5 text-sm font-bold tracking-wide bg-gradient-to-r from-red-500 via-purple-500 to-blue-500 mb-1 bg-clip-text text-transparent transition-all duration-300 sm:mt-0 sm:w-auto sm:shrink-0 cursor-pointer hover:text-white hover:bg-clip-border hover:bg-gradient-to-r hover:from-red-500 hover:via-purple-500 hover:to-blue-500">
+                Login
+              </div>
+            </div> */}
+
+            {/* <NavLink href="/">Coupons</NavLink> */}
           </div>
-          <NavbarIcons />
+          <div className="flex items-center justify-end">
+            <NavbarIcons />
+          </div>
         </div>
       </div>
     </div>
