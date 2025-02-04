@@ -54,8 +54,8 @@ const Carousel: React.FC<CarouselProps> = ({
   };
 
   return (
-    <div className="relative w-full h-full overflow-hidden"> {/* Added overflow-hidden */}
-      <div className="relative w-full h-full z-[5]">
+    <div className="relative w-full h-full overflow-hidden rounded-xl"> {/* Added rounded-xl */}
+      <div className="relative w-full h-full">
         <AnimatePresence initial={false} custom={direction} mode="wait">
           <motion.img
             key={currentIndex}
