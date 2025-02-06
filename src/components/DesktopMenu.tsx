@@ -22,7 +22,7 @@ export default function DesktopMenu({ menu }: { menu: Menu }) {
   };
 
   const handleMouseLeave = () => {
-    setIsHover(false);  // Instant close - no timeout
+    setIsHover(false); // Instant close - no timeout
   };
 
   const subMenuAnimate = {
@@ -49,9 +49,9 @@ export default function DesktopMenu({ menu }: { menu: Menu }) {
   const hasSubMenu = menu.subMenu && menu.subMenu.length > 0;
 
   const getMinWidth = () => {
-    if (menu.gridCols === 3) return 'min-w-[800px]';
-    if (menu.gridCols === 2) return 'min-w-[600px]';
-    return 'min-w-[300px]';
+    if (menu.gridCols === 3) return "min-w-[800px]";
+    if (menu.gridCols === 2) return "min-w-[600px]";
+    return "min-w-[300px]";
   };
 
   return (
@@ -63,10 +63,10 @@ export default function DesktopMenu({ menu }: { menu: Menu }) {
       <span className="flex items-center gap-1 hover:bg-white/10 cursor-pointer px-3 py-1.5 rounded-xl">
         {menu.name}
         {hasSubMenu && (
-          <ChevronDown 
+          <ChevronDown
             className={`mt-[0.6px] transition-transform duration-200 ${
-              isHover ? 'rotate-180' : ''
-            }`} 
+              isHover ? "rotate-180" : ""
+            }`}
           />
         )}
       </span>
@@ -90,19 +90,25 @@ export default function DesktopMenu({ menu }: { menu: Menu }) {
             }`}
           >
             {menu.subMenu?.map((submenu, i) => (
-              <div 
+              <div
                 key={i}
                 className="group/item hover:bg-gray-50 rounded-lg p-3 transition-colors duration-200"
               >
                 <div className="flex items-center gap-x-4">
                   {submenu.icon && (
                     <div className="bg-gray-100 p-2.5 rounded-md group-hover/item:bg-white group-hover/item:shadow-sm transition-all duration-200 flex-shrink-0">
-                      <submenu.icon className="w-5 h-5 text-gray-700" />
+                      <div className="w-5 h-5 text-gray-700">
+                        <submenu.icon />
+                      </div>
                     </div>
                   )}
                   <div className="min-w-0">
-                    <h6 className="font-medium text-gray-900 truncate">{submenu.name}</h6>
-                    <p className="text-sm text-gray-500 truncate">{submenu.desc}</p>
+                    <h6 className="font-medium text-gray-900 truncate">
+                      {submenu.name}
+                    </h6>
+                    <p className="text-sm text-gray-500 truncate">
+                      {submenu.desc}
+                    </p>
                   </div>
                 </div>
               </div>

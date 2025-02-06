@@ -19,6 +19,8 @@ import {
 import Logo from "../../public/CoLogo.png";
 import Image from "next/image";
 import DesktopMenu from "./DesktopMenu";
+import MobMenu from "./MobMenu";
+
 
 export const Menus = [
   {
@@ -91,6 +93,7 @@ export default function NavbarComponent() {
             <button className="bg-white/5 z-[999] relative px-3 py-1.5 shadow rounded-xl flex items-center">
               Sign In
             </button>
+            <MobMenu Menus={Menus} />
           </div>
         </nav>
       </header>
