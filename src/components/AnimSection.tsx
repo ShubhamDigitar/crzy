@@ -1,14 +1,14 @@
-"useClient";
+'use client';
 
 import Globe from "./text/Globe";
 import Typewriter from "./text/Typewriter";
 
 const AnimSection = () => {
   return (
-    <div className="w-full px-8 flex h-[30em] gap-4 ">
-      <div className="section1 w-2/3">
-        <div className="w-full h-full flex flex-row items-start justify-start bg-white text-foreground dark:text-muted font-normal overflow-hidden lg:p-16 lg:pt-48 text-bold">
-          <p className="whitespace-pre-wrap text-2xl sm:text-3xl md:text-4xl lg:text-5xl">
+    <div className="w-full px-4 md:px-8 flex h-[15em] md:h-[30em]  gap-4">
+      <div className="section1 w-full md:w-2/3">
+        <div className="w-full h-full flex flex-row items-start justify-start bg-white text-foreground dark:text-muted font-normal overflow-hidden p-8 md:p-12 lg:p-16 pt-24 md:pt-32 lg:pt-48">
+          <p className="whitespace-pre-wrap text-xl sm:text-2xl md:text-3xl lg:text-5xl">
             <span>{"We're here to help you "}</span>
             <Typewriter
               text={[
@@ -28,7 +28,6 @@ const AnimSection = () => {
           </p>
         </div>
       </div>
-      
     </div>
   );
 };

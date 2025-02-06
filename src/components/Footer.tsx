@@ -5,8 +5,8 @@ import Image from "next/image";
 export const Footer = () => {
   return (
     <div className=" ">
-      <footer className="bg-white border-2 border-t-[2px] rounded-t-lg px-2 md:px-4 lg:px-8 xl:px-20 2xl:px-36">
-        <div className="mx-auto sm:px-2 ">
+      <footer className="bg-white border-2 border-t-[2px] rounded-t-lg px-4 md:px-4 lg:px-8 xl:px-20 2xl:px-36">
+        <div className="mx-auto sm:px-2">
           <div className="lg:grid lg:grid-cols-2">
             <div className="border-b border-gray-100 py-8 lg:order-last lg:border-b-0 lg:border-s lg:py-16 lg:ps-16">
               <div className="block text-teal-600 lg:hidden">
@@ -17,11 +17,11 @@ export const Footer = () => {
                 <span className="hidden h-1 w-10 rounded bg-gradient-to-r from-red-500 via-purple-500 to-blue-500 lg:block"></span>
 
                 <div>
-                  <h2 className="text-2xl font-medium text-gray-900">
+                  <h2 className=" text-md md:text-2xl font-medium text-gray-900">
                     Never Miss a Crazy Deal!
                   </h2>
 
-                  <p className="mt-4 max-w-lg text-gray-500">
+                  <p className="text-sm md:text-md mt-4 max-w-lg text-gray-500">
                     Unlock the best discounts from top stores worldwide.
                     Subscribe now and grab the hottest offers before they’re
                     gone!
@@ -33,15 +33,15 @@ export const Footer = () => {
                     Email
                   </label>
 
-                  <div className="rounded-md  p-2 focus-within:ring sm:flex sm:items-center sm:gap-4">
+                  <div className="flex items-center gap-2 w-full">
                     <input
                       type="email"
                       id="UserEmail"
-                      placeholder="tech@gmail.com"
-                      className="w-full sm:text-sm outline-none"
+                      placeholder="crazydeal@gmail.com"
+                      className="flex-1 sm:text-xs outline-none"
                     />
 
-                    <button className="mt-1 w-full rounded bg-gradient-to-r from-red-500 via-purple-500 to-blue-500 px-6 py-3 text-sm font-bold uppercase tracking-wide text-white transition-none hover:bg-teal-600 sm:mt-0 sm:w-auto sm:shrink-0">
+                    <button className="rounded bg-gradient-to-r from-red-500 via-purple-500 to-blue-500 px-2 py-2 text-xs font-bold uppercase tracking-wide text-white transition-none hover:bg-teal-600 sm:shrink-0">
                       Get Alerts
                     </button>
                   </div>
@@ -54,13 +54,13 @@ export const Footer = () => {
                 <Image src={logo} alt="Crazy Offers" height={60} />
               </div>
 
-              <div className="mt-8 grid grid-cols-1 gap-8 sm:grid-cols-3">
+              <div className="mt-6 grid grid-cols-1 gap-8 sm:grid-cols-3">
                 <div>
-                  <p className="font-medium text-gray-900 relative w-fit after:content-[''] after:absolute after:left-0 after:-bottom-1 after:w-full after:h-[2px] after:bg-gradient-to-r after:from-red-500 after:via-purple-500 after:to-blue-500">
+                  <p className="font-medium text-gray-900 relative text-sm w-fit after:content-[''] after:absolute after:left-0 after:-bottom-1 after:w-full after:h-[2px] after:bg-gradient-to-r after:from-red-500 after:via-purple-500 after:to-blue-500">
                     Top Categories
                   </p>
 
-                  <ul className="mt-6 space-y-4 text-sm">
+                  <ul className="mt-4 space-y-2 text-xs">
                     <li>
                       <a
                         href="#"
@@ -109,9 +109,9 @@ export const Footer = () => {
                 </div>
 
                 <div>
-                  <p className="font-medium text-gray-900 relative w-fit after:content-[''] after:absolute after:left-0 after:-bottom-1 after:w-full after:h-[2px] after:bg-gradient-to-r after:from-red-500 after:via-purple-500 after:to-blue-500">Company</p>
+                  <p className="font-medium text-sm text-gray-900 relative w-fit after:content-[''] after:absolute after:left-0 after:-bottom-1 after:w-full after:h-[2px] after:bg-gradient-to-r after:from-red-500 after:via-purple-500 after:to-blue-500">Company</p>
 
-                  <ul className="mt-6 space-y-4 text-sm">
+                  <ul className="mt-4 space-y-2 text-xs">
                     <li>
                       <a
                         href="#"
@@ -142,9 +142,9 @@ export const Footer = () => {
                 </div>
 
                 <div>
-                  <p className="font-medium text-gray-900 relative w-fit after:content-[''] after:absolute after:left-0 after:-bottom-1 after:w-full after:h-[2px] after:bg-gradient-to-r after:from-red-500 after:via-purple-500 after:to-blue-500">Help & Support</p>
+                  <p className="font-medium text-sm text-gray-900 relative w-fit after:content-[''] after:absolute after:left-0 after:-bottom-1 after:w-full after:h-[2px] after:bg-gradient-to-r after:from-red-500 after:via-purple-500 after:to-blue-500">Help & Support</p>
 
-                  <ul className="mt-6 space-y-4 text-sm">
+                  <ul className="mt-4 space-y-2 text-xs">
                     <li>
                       <a
                         href="#"
@@ -175,15 +175,14 @@ export const Footer = () => {
                 </div>
               </div>
 
-              <div className="mt-8 border-t border-gray-100 pt-8">
+              <div className="mt-8 border-t border-gray-100 pt-2 md:pt-8">
                 <ul className="flex flex-wrap gap-4 text-xs">
                   <li>
                     <a
                       href="#"
                       className="text-gray-500 transition hover:opacity-75"
                     >
-                      {" "}
-                      Terms & Conditions{" "}
+                      Terms & Conditions
                     </a>
                   </li>
 
@@ -192,8 +191,7 @@ export const Footer = () => {
                       href="#"
                       className="text-gray-500 transition hover:opacity-75"
                     >
-                      {" "}
-                      Privacy Policy{" "}
+                      Privacy Policy
                     </a>
                   </li>
 
@@ -202,8 +200,7 @@ export const Footer = () => {
                       href="#"
                       className="text-gray-500 transition hover:opacity-75"
                     >
-                      {" "}
-                      Cookies{" "}
+                      Cookies
                     </a>
                   </li>
                 </ul>

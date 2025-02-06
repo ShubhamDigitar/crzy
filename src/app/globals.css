@@ -16,6 +16,20 @@
   -ms-overflow-style: none; /* Hide scrollbar for Internet Explorer and Edge */
   scrollbar-width: none; 
 }
+.navbar-wrapper {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  z-index: 9999 !important; /* Force highest z-index */
+  background: white; /* Ensure background is visible */
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1); /* Slight shadow for separation */
+}
+
+.content-wrapper {
+  padding-top: 4rem !important; /* Prevent content from overlapping navbar */
+  z-index: 1; /* Ensure content is below the navbar */
+}
 
 @layer base {
   :root {
@@ -32,5 +46,19 @@
     --color-3: 210 100% 63%;
     --color-4: 195 100% 63%;
     --color-5: 90 100% 63%;
+  }
+}
+
+@layer components{
+  .sub-menu{
+
+  }
+}
+@layer utilities{
+  .flex-center{
+    @apply flex items-center ;
+  }
+  .flex-center-between{
+    @apply flex items-center justify-center ;
   }
 }

@@ -2,6 +2,7 @@
 
 import Image from "next/image";
 import { motion } from "framer-motion";
+import TestIcon from "./TestIcon";
 
 const PopularStore = () => {
   const dummyStores = [
@@ -57,6 +58,7 @@ const PopularStore = () => {
       <h2 className="text-2xl font-bold mb-6 text-gray-800 relative w-fit after:content-[''] after:absolute after:left-0 after:-bottom-1 after:w-full after:h-[2px] after:bg-gradient-to-r after:from-red-500 after:via-purple-500 after:to-blue-500">
         Popular Stores
       </h2>
+      
 
       <div className="flex flex-col md:flex-row gap-6">
         {/* Left Section - Featured Store Card (Hidden on mobile) */}
