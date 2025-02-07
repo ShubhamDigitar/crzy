@@ -18,6 +18,7 @@ const CardIndex: NextPage = () => {
   const activeIndex = cards.length - 1;
 
   // Function to reset cards when stack is empty
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   const resetCards = () => {
     setCards(CARDS);
   };

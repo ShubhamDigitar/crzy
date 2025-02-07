@@ -93,7 +93,7 @@ export default function NavbarComponent() {
             <button className="bg-white/5 z-[999] relative px-3 py-1.5 shadow rounded-xl flex items-center">
               Sign In
             </button>
-            <MobMenu Menus={Menus} />
+            <MobMenu Menus={Menus as any} />
           </div>
         </nav>
       </header>

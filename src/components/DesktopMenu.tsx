@@ -1,9 +1,9 @@
-import { useState, useRef, useCallback } from "react";
+import { useState } from "react";
 import { ChevronDown } from "lucide-react";
 import { motion } from "framer-motion";
 
 interface SubMenu {
-  icon?: React.ComponentType;
+  icon?: React.ComponentType<{ className?: string }>;  // Updated type definition
   name: string;
   desc: string;
 }
@@ -22,7 +22,7 @@ export default function DesktopMenu({ menu }: { menu: Menu }) {
   };
 
   const handleMouseLeave = () => {
-    setIsHover(false); // Instant close - no timeout
+    setIsHover(false);
   };
 
   const subMenuAnimate = {
@@ -97,9 +97,8 @@ export default function DesktopMenu({ menu }: { menu: Menu }) {
                 <div className="flex items-center gap-x-4">
                   {submenu.icon && (
                     <div className="bg-gray-100 p-2.5 rounded-md group-hover/item:bg-white group-hover/item:shadow-sm transition-all duration-200 flex-shrink-0">
-                      <div className="w-5 h-5 text-gray-700">
-                        <submenu.icon />
-                      </div>
+                      {/* Fixed icon rendering */}
+                      <submenu.icon className="w-5 h-5 text-gray-700" />
                     </div>
                   )}
                   <div className="min-w-0">
