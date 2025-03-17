@@ -28,7 +28,7 @@ const ProductDealsCarousel: FC<ProductDealsCarouselProps> = ({
           ? scrollContainerRef.current.scrollLeft - scrollAmount
           : scrollContainerRef.current.scrollLeft + scrollAmount;
 
-      scrollContainerRef.current.scrollTo({
+      scrollContainerRef.current.scrollTo({         
         left: newScrollPosition,
         behavior: "smooth",
       });

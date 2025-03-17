@@ -15,12 +15,13 @@ import {
   TriangleAlert,
   Utensils,
 } from "lucide-react";
-
-import Logo from "../../public/CoLogo.png";
-import Image from "next/image";
+import { useState, useEffect } from "react";
+import LogoCO from "../../public/CrazyOffersLogo.png";
 import DesktopMenu from "./DesktopMenu";
 import MobMenu from "./MobMenu";
-
+import SearchBar from "./SearchBar";
+import Image from "next/image";
+import { useRouter } from "next/navigation";
 
 export const Menus = [
   {
@@ -42,7 +43,7 @@ export const Menus = [
       { name: "Books & Media", desc: "Read, watch & listen", icon: BookOpen },
       { name: "Pet Supplies", desc: "Care for your pets", icon: PawPrint },
     ],
-    gridCols: 3,
+    gridCols: 2,
   },
   {
     name: "Support",
@@ -76,22 +77,70 @@ export const Menus = [
 ];
 
 export default function NavbarComponent() {
+  const router = useRouter();
+
+  const navigateToCategory = (category: string) => {
+    if (category) {
+      router.push(
+        `/categories?category=${category.toLowerCase().replace(/ /g, "-")}`
+      );
+    }
+  };
+
+  const [isScrolled, setIsScrolled] = useState(false);
+
+  useEffect(() => {
+    const handleScroll = () => {
+      if (window.scrollY > 20) {
+        setIsScrolled(true);
+      } else {
+        setIsScrolled(false);
+      }
+    };
+
+    window.addEventListener("scroll", handleScroll);
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
+
   return (
-    <div>
-      <header className="h-16 text-[15px] fixed inset-0 flex items-center bg-slate-50">
-        <nav className="px-3.5 flex items-center justify-between w-full max-w-7xl mx-auto">
-          <div className="flex items-center gap-x-3 z-[9999] relative">
-            <Image src={Logo} alt="Logo" className="w-full h-8 -mr-3" />
-            <h1 className="text-xl">CrazyOffers.in</h1>
+    <div className="sticky top-0 z-50">
+      <header
+        className={`h-16 text-[15px] transition-all duration-300 ${
+          isScrolled
+            ? "bg-opacity-50 backdrop-blur-sm bg-slate-50/50"
+            : "bg-slate-50"
+        }`}
+      >
+        <nav className="h-full px-4 flex items-center justify-between max-w-7xl mx-auto">
+          <div className="flex items-center flex-shrink-0 mr-4">
+            <Image src={LogoCO} alt="Crazy Offers Logo" />
           </div>
-          <ul className="lg:flex lg:items-center hidden  gap-x-2 ">
+          <div className="hidden md:block flex-grow max-w-2xl mx-4">
+            <SearchBar />
+          </div>
+          <ul className="hidden lg:flex items-center space-x-6 flex-shrink-0">
             {Menus.map((menu) => (
-              <DesktopMenu key={menu.name} menu={menu} />
+              <li key={menu.name} className="cursor-pointer">
+                <DesktopMenu
+                  menu={menu}
+                  onSubMenuClick={(
+                    category: string,
+                    e: React.MouseEvent<HTMLDivElement>
+                  ) => {
+                    e.stopPropagation(); 
+                    navigateToCategory(category);
+                  }}
+                />
+              </li>
             ))}
           </ul>
-          <div className="flex items-center gap-x-5">
-            <button className="bg-white/5 z-[999] relative px-3 py-1.5 shadow rounded-xl flex items-center">
-              Sign In
+          <div className="flex items-center gap-x-4 flex-shrink-0 ml-4">
+            <button
+              className={`px-4 py-2 rounded-lg shadow-sm hover:shadow whitespace-nowrap ${
+                isScrolled ? "bg-white/80" : "bg-white"
+              }`}
+            >
+              Login
             </button>
             <MobMenu Menus={Menus as any} />
           </div>

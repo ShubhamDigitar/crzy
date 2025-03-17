@@ -1,35 +1,35 @@
-import type { Metadata } from "next";
-import { Montserrat } from "next/font/google"; // Import Montserrat
+"use client";
+import { Montserrat } from "next/font/google";
 import "./globals.css";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import NavbarComponent from "@/components/NavbarComponent";
+import { useState } from "react";
+import LoginModal from "@/components/LoginModal";
 
 const montserrat = Montserrat({
   subsets: ["latin"],
-  weight: ["400", "700"], // Add weights as needed
-  variable: "--font-montserrat", // Define a CSS variable for global use
+  weight: ["400", "700"],
+  variable: "--font-montserrat",
 });
-
-export const metadata: Metadata = {
-  title: "CrazyOffers",
-  description: "The best deals on the internet",
-};
 
 export default function RootLayout({
   children,
 }: Readonly<{
   children: React.ReactNode;
 }>) {
+  const [showModal, setShowModal] = useState(false);
+  const handleShowModal = () => {
+    setShowModal(!showModal);
+    console.log("Clicked Login");
+  };
   return (
     <html lang="en" className={montserrat.variable}>
-     <body className="relative">
-        {/* Navbar: Higher Z-Index */}
+      <body className="relative">
         <div className="navbar-wrapper">
+          {showModal && <LoginModal handleShowModal={handleShowModal} />}
           <NavbarComponent />
         </div>
-
-        {/* Main Content: Lower Z-Index & Top Padding */}
         <div className="content-wrapper">
           {children}
           <Footer />

@@ -1,33 +1,40 @@
 "use client";
 import Image from "next/image";
-import { FC, useRef } from "react";
+import { FC, useRef, useState, useEffect } from "react";
 import { ChevronLeft, ChevronRight } from "lucide-react";
-import image from "../../public/comp_logo.jpg";
 
-interface Company {
-  name: string;
-  logo: string;
+interface Brand {
+  category_name: string;
+  image_url: string;
+  view_priority: number;
 }
 
 const CircleCategories: FC = () => {
   const scrollContainerRef = useRef<HTMLDivElement>(null);
+  const [brands, setBrands] = useState<Brand[]>([]);
+  const [isLoading, setIsLoading] = useState<boolean>(true);
+  const [error, setError] = useState<string | null>(null);
 
-  const companies: Company[] = [
-    { name: "Company", logo: "/api/placeholder/80/80" },
-    { name: "Company", logo: "/api/placeholder/80/80" },
-    { name: "Company", logo: "/api/placeholder/80/80" },
-    { name: "Company", logo: "/api/placeholder/80/80" },
-    { name: "Company", logo: "/api/placeholder/80/80" },
-    { name: "Company", logo: "/api/placeholder/80/80" },
-    { name: "Company", logo: "/api/placeholder/80/80" },
-    { name: "Company", logo: "/api/placeholder/80/80" },
-    { name: "Company", logo: "/api/placeholder/80/80" },
-    { name: "Company", logo: "/api/placeholder/80/80" },
-    { name: "Company", logo: "/api/placeholder/80/80" },
-    { name: "Company", logo: "/api/placeholder/80/80" },
-    { name: "Company", logo: "/api/placeholder/80/80" },
-    { name: "Company", logo: "/api/placeholder/80/80" },
-  ];
+  useEffect(() => {
+    const fetchBrands = async () => {
+      try {
+        setIsLoading(true);
+        const response = await fetch("/api/categories");
+        if (!response.ok) {
+          throw new Error(`Failed to fetch: ${response.status}`);
+        }
+        const data = await response.json();
+        const sortedBrands = data.sort((a: Brand, b: Brand) => a.view_priority - b.view_priority);
+        setBrands(sortedBrands);
+      } catch (err) {
+        setError(err instanceof Error ? err.message : "Failed to fetch brands");
+      } finally {
+        setIsLoading(false);
+      }
+    };
+
+    fetchBrands();
+  }, []);
 
   const scroll = (direction: "left" | "right") => {
     if (scrollContainerRef.current) {
@@ -67,35 +74,46 @@ const CircleCategories: FC = () => {
           <ChevronRight className="w-5 h-5 text-gray-600" />
         </button>
 
-        <div
-          ref={scrollContainerRef}
-          className="w-full overflow-x-auto no-scrollbar scroll-smooth"
-        >
-          <div className="flex gap-4 pb-4 min-w-min px-2 md:gap-10">
-            {companies.map((company, index) => (
-              <div
-                key={index}
-                className="flex flex-col items-center flex-shrink-0 group/item pt-2 cursor-pointer"
-              >
-                {/* Gradient border container */}
-                <div className="relative w-16 h-16 md:w-20 md:h-20 lg:w-24 lg:h-24 rounded-full bg-gradient-to-r from-red-500 via-purple-500 to-blue-500 p-[3px] mb-2 transition-transform duration-300 ease-in-out group-hover/item:scale-105">
-                  <div className="w-full h-full rounded-full overflow-hidden">
-                    <Image
-                      src={image}
-                      alt={`${company.name} logo`}
-                      fill
-                      sizes="(max-width: 768px) 64px, (max-width: 1024px) 80px, 96px"
-                      className="object-cover rounded-full scale-95" // Scale down the image
-                      priority={index < 4}
-                    />
-                  </div>
+        <div ref={scrollContainerRef} className="w-full overflow-x-auto no-scrollbar scroll-smooth">
+          {isLoading ? (
+            // Skeleton Loader
+            <div className="flex gap-4 pb-4 min-w-min px-2 md:gap-10">
+              {Array.from({ length: 12 }).map((_, index) => (
+                <div key={index} className="flex flex-col items-center flex-shrink-0 pt-2">
+                  <div className="relative w-16 h-16 md:w-20 md:h-20 lg:w-24 lg:h-24 rounded-full bg-gray-200 animate-pulse mb-2" />
+                  <div className="w-16 h-4 bg-gray-200 animate-pulse rounded"></div>
                 </div>
-                <p className="text-sm md:text-base text-center text-gray-800 group-hover/item:text-gray-600 cursor-pointer">
-                  {company.name}
-                </p>
-              </div>
-            ))}
-          </div>
+              ))}
+            </div>
+          ) : error ? (
+            <div className="flex justify-center items-center h-24">
+              <p className="text-red-500">Error: {error}</p>
+            </div>
+          ) : (
+            <div className="flex gap-4 pb-4 min-w-min px-2 md:gap-10">
+              {brands.map((brand, index) => (
+                <div key={index} className="flex flex-col items-center flex-shrink-0 group/item pt-2 cursor-pointer">
+                  <div className="relative w-16 h-16 md:w-20 md:h-20 lg:w-24 lg:h-24 rounded-full bg-gradient-to-r from-red-500 via-purple-500 to-blue-500 p-[3px] mb-2 transition-transform duration-300 ease-in-out group-hover/item:scale-105">
+                    <div className="w-full h-full rounded-full overflow-hidden bg-white">
+                      <div className="relative w-full h-full">
+                        <Image
+                          src={brand.image_url}
+                          alt={`${brand.category_name} logo`}
+                          fill
+                          sizes="(max-width: 768px) 64px, (max-width: 1024px) 80px, 96px"
+                          className="object-contain rounded-full scale-95"
+                          priority={index < 4}
+                        />
+                      </div>
+                    </div>
+                  </div>
+                  <p className="text-sm md:text-base text-center text-gray-800 group-hover/item:text-gray-600 cursor-pointer">
+                    {brand.category_name}
+                  </p>
+                </div>
+              ))}
+            </div>
+          )}
         </div>
       </div>
     </div>

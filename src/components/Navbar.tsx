@@ -50,7 +50,6 @@ const Navbar = () => {
       {/* Mobile */}
       <div className="flex justify-between items-center h-full md:hidden">
         <Link href="#">
-          <div className="text-2xl tracking-wide">CrazyOffers.in</div>
         </Link>
         <Menu />
       </div>

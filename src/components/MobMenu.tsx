@@ -19,6 +19,7 @@ import {
 import { useState } from "react";
 import { motion } from "framer-motion";
 import { Menu, X, ChevronDown } from "lucide-react";
+import SearchBar from "./SearchBar";
 export const Menus = [
   {
     name: "Categories",
@@ -110,13 +111,14 @@ export default function MobMenu({ Menus }: MobMenuProps) {
       <button className="lg:hidden z-[999] relative" onClick={toggleDrawer}>
         {isOpen ? <X /> : <Menu />}
       </button>
-
+      
       <motion.div
-        className="fixed left-0 right-0 top-16 overflow-y-auto h-full bg-white backdrop-blur text-black p-6 pb-20 w-"
+        className="fixed left-0 right-0 top-16 overflow-y-auto h-full bg-white backdrop-blur text-black p-6 pb-20"
         initial={{ x: "-100%" }}
         animate={{ x: isOpen ? "0%" : "-100%" }}
       >
         <ul>
+        <SearchBar />
           {Menus.map(({ name, subMenu }, i) => {
             const isClicked = clicked === i;
             const hasSubMenu = subMenu?.length;

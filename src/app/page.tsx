@@ -1,8 +1,11 @@
 import AnimSection from "@/components/AnimSection";
+import BestSiteCarousel from "@/components/BestSiteCarousel";
 import CircleCategories from "@/components/CircleCategories";
 import Footer from "@/components/Footer";
+import PopularOffersCarousel from "@/components/PopularOffersCarousel";
 import PopularStore from "@/components/PopularStore";
 import ProductListPage from "@/components/ProductListPage";
+import ReferSection from "@/components/ReferSection";
 import SliderMain from "@/components/SliderMain";
 import Typewriter from "@/components/text/Typewriter";
 
@@ -12,8 +15,11 @@ const HomePage = () => {
       <SliderMain />
       <CircleCategories />
       <ProductListPage />
+      {/* <AnimSection /> */}
       <PopularStore/>
-      <AnimSection />
+      <ReferSection/>
+      <BestSiteCarousel/>
+      <PopularOffersCarousel/>
       </div>
   );
 };
