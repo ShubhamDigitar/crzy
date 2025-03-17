@@ -1,4 +1,5 @@
 import React from "react";
+import Image from "next/image";
 
 const Blog = () => {
   return (
@@ -80,8 +81,8 @@ const BlogCard = ({ image, date, CardTitle, CardDescription }: BlogCardProps) =>
     <>
       <div className="w-full px-4 md:w-1/2 lg:w-1/3">
         <div className="mb-10 w-full">
-          <div className="mb-8 overflow-hidden rounded">
-            <img src={image} alt="" className="w-full" />
+            <Image src={image} alt="" className="w-full" layout="responsive" width={700} height={475} />
+           
           </div>
           <div>
             {date && (
@@ -102,7 +103,7 @@ const BlogCard = ({ image, date, CardTitle, CardDescription }: BlogCardProps) =>
             </p>
           </div>
         </div>
-      </div>
+     
     </>
   );
 };

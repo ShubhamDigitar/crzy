@@ -1,22 +1,19 @@
 "use client";
 import { motion, useAnimation } from "framer-motion";
 import { useEffect, useState } from "react";
+import Image from "next/image";
 
 interface CarouselProps {
   images: string[];
 }
 
 const HorizontalCarousel: React.FC<CarouselProps> = ({ images }) => {
-  const [visibleImages, setVisibleImages] = useState(3); 
+  const [visibleImages, setVisibleImages] = useState(3);
   const controls = useAnimation();
 
   useEffect(() => {
     const updateVisibility = () => {
-      if (window.innerWidth < 640) {
-        setVisibleImages(1); 
-      } else {
-        setVisibleImages(3); 
-      }
+      setVisibleImages(window.innerWidth < 640 ? 1 : 3);
     };
 
     updateVisibility();
@@ -24,22 +21,28 @@ const HorizontalCarousel: React.FC<CarouselProps> = ({ images }) => {
     return () => window.removeEventListener("resize", updateVisibility);
   }, []);
 
+  const canDrag = images.length > visibleImages;
+  const dragConstraints = canDrag
+    ? { left: -((images.length - visibleImages) * 300), right: 0 }
+    : { left: 0, right: 0 };
+
   return (
     <div className="overflow-hidden flex justify-center w-full">
       <motion.div
         className="flex gap-4"
-        drag={images.length > visibleImages ? "x" : false} // Enable swipe only if more images exist
-        dragConstraints={{ left: -((images.length - visibleImages) * 300), right: 0 }}
+        drag={canDrag ? "x" : false} // Enable swipe only if more images exist
+        dragConstraints={dragConstraints}
         animate={controls}
       >
         {images.map((src, i) => (
-          <motion.div key={i} className="w-[300px] h-60 flex-shrink-0">
-            <img
-              src={src}
-              alt={`Slide ${i}`}
-              className="w-full h-full object-cover rounded-lg shadow-lg"
-            />
-          </motion.div>
+          <Image
+            key={i}
+            src={src}
+            alt={`Slide ${i}`}
+            width={300}
+            height={240}
+            className="w-full h-full object-cover rounded-lg shadow-lg"
+          />
         ))}
       </motion.div>
     </div>

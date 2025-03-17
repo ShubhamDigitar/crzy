@@ -1,14 +1,16 @@
 import React from "react";
+import Image from "next/image";
 
 const LoginForm: React.FC = () => {
   return (
     <div className="flex justify-center items-center bg-gray-100 font-sans h-full md:min-h-screen p-4">
       <div className="grid justify-center max-w-md mx-auto">
-        <div>
-          <img
+          <Image
             src="https://readymadeui.com/login-image.webp"
             className="w-full object-cover rounded-2xl"
             alt="login"
+            width={500}
+            height={500}
           />
         </div>
 
@@ -75,18 +77,18 @@ const LoginForm: React.FC = () => {
 
           <div className="space-x-6 flex justify-center">
             <button type="button" className="border-none outline-none">
-              <img src="/google-icon.svg" alt="Google" width={30} />
+              <Image src="/google-icon.svg" alt="Google" width={30} height={30} />
             </button>
             <button type="button" className="border-none outline-none">
-              <img src="/apple-icon.svg" alt="Apple" width={30} />
+              <Image src="/apple-icon.svg" alt="Apple" width={30} height={30} />
             </button>
             <button type="button" className="border-none outline-none">
-              <img src="/facebook-icon.svg" alt="Facebook" width={30} />
+              <Image src="/facebook-icon.svg" alt="Facebook" width={30} height={30} />
             </button>
           </div>
         </form>
       </div>
-    </div>
+   
   );
 };
 
